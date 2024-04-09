@@ -67,17 +67,73 @@ public class SinglyLinkedList {
 		System.out.println("\n");
 	}
 	
+	//Searching in the Linked List
+	boolean searchNode(int nodeValue) {
+		if(head!=null) {
+		Node tempNode=head;
+		for(int i=0;i<size;i++) {
+			if(tempNode.value==nodeValue) {
+				System.out.println("Found @ the location "+i);
+				return true;
+			}
+			tempNode=tempNode.next;
+		}
+		}
+		System.out.println("Node not found");
+		return false;
+	}
+	
+	public void deleteNode(int location) {
+		if(head==null) {
+			System.out.println("SLL Does Not Contain");
+		}
+		else if(location==0) {
+			head=head.next;
+			size--;
+			if(size==0) {
+				tail=null;
+			}
+		}
+		else if(location>=size) {
+			Node tempNode=head;
+			for(int i=0;i<size-1;i++) {
+				tempNode=tempNode.next;
+			}
+			if(tempNode==head) {
+				tail=head=null;
+				size--;
+				return;
+			}
+			tempNode.next=null;
+			tail=tempNode;
+			size--;
+		}
+		else {
+			Node tempNode=head;
+			for(int i=0;i<location-1;i++) {
+				tempNode=tempNode.next;
+			}
+			tempNode.next=tempNode.next.next;
+			size--;
+		}
+	}
+	
 	
 	
 	public static void main(String arg[]) {
 		SinglyLinkedList sll=new SinglyLinkedList();
 		sll.createSinglyLinkedList(5);
 		System.out.println(sll.head.value);
-		sll.inserLinkedList(6, 2);
+		sll.inserLinkedList(6,0);
 		sll.inserLinkedList(8, 3);
 		sll.inserLinkedList(7, 1);
 		sll.inserLinkedList(3, 4);
-		sll.inserLinkedList(9, 5);
+		sll.inserLinkedList(9, 2);
+		sll.inserLinkedList(10, 5);
+		sll.inserLinkedList(11, 3);
+		sll.traverseSinglyLinkedList();
+		sll.searchNode(3);
+		sll.deleteNode(1);
 		sll.traverseSinglyLinkedList();
 	}
 
