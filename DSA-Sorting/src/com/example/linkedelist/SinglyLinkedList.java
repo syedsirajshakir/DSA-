@@ -117,6 +117,21 @@ public class SinglyLinkedList {
 			size--;
 		}
 	}
+	  // push to Linked List
+	  public void push(int nodeValue){
+	        if(head==null){
+	        	createSinglyLinkedList(nodeValue);
+	            return;
+	        }
+	        else{
+	        Node node =new Node();
+	        node.value=nodeValue;
+	        node.next=null;
+	        tail.next=node;
+	        tail=node;
+	        size++;
+	        }
+	    }
 	
 	
 	
